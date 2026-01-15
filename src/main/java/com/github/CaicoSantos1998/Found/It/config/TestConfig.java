@@ -1,8 +1,10 @@
 package com.github.CaicoSantos1998.Found.It.config;
 
+import com.github.CaicoSantos1998.Found.It.entities.Category;
 import com.github.CaicoSantos1998.Found.It.entities.Order;
 import com.github.CaicoSantos1998.Found.It.entities.User;
 import com.github.CaicoSantos1998.Found.It.entities.enums.OrderStatus;
+import com.github.CaicoSantos1998.Found.It.repositories.CategoryRepository;
 import com.github.CaicoSantos1998.Found.It.repositories.OrderRepository;
 import com.github.CaicoSantos1998.Found.It.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +22,17 @@ public class TestConfig implements CommandLineRunner {
     private UserRepository userRepository;
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
     public void run(String... args) throws Exception {
+
+        Category c1 = new Category(null, "Electronics");
+        Category c2 = new Category(null, "Books");
+        Category c3 = new Category(null, "Computers");
+        categoryRepository.saveAll(Arrays.asList(c1, c2, c3));
+
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "98837421", "12452");
         User u2 = new User(null, "Alex Green", "alex@gmail.com", "98873221", "432222");
 
